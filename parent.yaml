@@ -1,0 +1,11 @@
+---
+- name: Parent Playbook that calls child playbooks (include module)
+  hosts: all
+  become: true
+  tasks:
+    - name: call child elements
+      include: "{{item}}"
+      with_items:
+       - child1.yaml
+       - child2.yaml
+       - child3.yaml

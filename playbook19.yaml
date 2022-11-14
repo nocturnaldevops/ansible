@@ -1,0 +1,19 @@
+---
+- name: Update the password of a user account if the account is newly created
+  hosts: all
+  become: true
+  tasks:
+   - name: create a user
+     user: 
+       name: john
+     register: result
+   - name: print the output of the above play
+     debug:
+       var: result
+   - name: update the password of the user if the user account is newly created
+     user: 
+       name: john
+       password: 123456
+     when:
+      result.changed==true
+...

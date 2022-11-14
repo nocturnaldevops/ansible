@@ -1,0 +1,24 @@
+---
+- name: handlers example
+  hosts: all
+  become: true
+  tasks:
+   - name: install tomcat9
+     apt: 
+       name: tomcat9
+       state: present
+     notify: check the status of tomcat
+   - name: change the port of tomcat
+     replace:
+       regexp: 8080
+       replace: 9090
+       path: /etc/tomcat9/server.xml
+     notify: restart tomcat
+  handlers: 
+   - name: restart tomcat
+     service: 
+       name: tomcat9
+       state: restarted
+   - name: check the status of tomcat
+     shell: "sudo sytemctl status tomcat9"
+...

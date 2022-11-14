@@ -1,0 +1,14 @@
+---
+- name: 
+  hosts: all
+  become: true
+  tasks:
+   - name: install tomcat
+     apt:
+       name: tomcat9
+       state: present
+     register: output
+   - name: print the logs of above play
+     debug:
+       var: output
+...

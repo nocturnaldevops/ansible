@@ -1,0 +1,11 @@
+---
+- name: playbook to install tree on all managed nodes
+  hosts: newservers
+  become: true
+  tasks: 
+    - name: install tree
+      apt:
+        name: tree
+        state: present
+        update_cache: yes
+...

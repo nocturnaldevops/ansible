@@ -1,0 +1,10 @@
+---
+- name: install git on all managed nodes
+  hosts: all
+  tasks:
+   - name: install git
+     apt:
+      name: git
+      state: present
+      update_cache: yes
+...

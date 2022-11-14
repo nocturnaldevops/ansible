@@ -1,0 +1,21 @@
+---
+- name: Error Handling in Ansible
+  hosts: all
+  become: true
+  tasks:
+   - block:
+      - name: install tomcat7
+        apt:
+          name: tomcat7
+          state: present
+     rescue:
+      - name: install tomcat8
+        apt:
+          name: tomcat8
+          state: present
+     always:
+      - name: check url response
+        uri:
+          url: http://172.31.83.34:8080
+          status_code: 200
+...

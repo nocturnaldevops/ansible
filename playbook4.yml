@@ -1,0 +1,17 @@
+---
+- name: playbook to create a user and add a file in user's workspace in all managed nodes
+  hosts: all
+  become: true
+  tasks:
+   - name: create a user
+     user:
+       name: addy
+       password: 123456
+       home: /home/addy
+       uid: 1200
+       comment: "developer"
+   - name: create a file in user's workspace
+     file:
+       name: /home/addy/addy.txt
+       state: touch
+...

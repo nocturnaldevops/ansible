@@ -1,0 +1,11 @@
+---
+- name: install docker with shell module
+  hosts: all
+  become: true
+  tasks:
+   - name: install docker
+     shell: "{{item}}"
+     with_items:
+       - curl -fsSL https://get.docker.com -o get-docker.sh
+       - sh get-docker.sh
+...

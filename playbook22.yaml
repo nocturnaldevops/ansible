@@ -1,0 +1,28 @@
+---
+- name: install and configure apache2
+  hosts: all
+  become: true
+  tasks:
+   - name: install apache2
+     apt: 
+       name: apache2
+       state: present
+     notify: check the url
+     notify: restart apache2
+   - name: change the website
+     copy:
+       src: index.html
+       dest: /var/www/html/
+     notify: restart apache2
+     notify: check the url
+  handlers:
+   - name: check the url
+     uri:
+       url: http://172.31.83.34:80
+       status_code: 200
+   - name: restart apache2
+     service:
+       name: apache2
+       state: restarted
+       
+...

@@ -1,0 +1,19 @@
+---
+- name: Create a file in user's workspace if the file is not present
+  hosts: all
+  become: true
+  tasks:
+   - name: check for a file
+     stat: 
+       path: /home/john/john.txt
+     register: res
+   - name: print the output of the above play
+     debug:
+       var: res
+   - name: Create a file if the file is not present in user's workspace
+     file:
+       name: /home/john/john.txt
+       state: touch
+     when:
+       res.stat.exists==false
+...

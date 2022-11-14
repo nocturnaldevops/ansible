@@ -1,0 +1,17 @@
+---
+- name: playbook to uninstall elinks, git, maven,and install  tree, tomcat9, tomcat9-admin
+  hosts: all
+  become: true
+  tasks:
+   - name: install and uninstall packages
+     apt: 
+       name: "{{item.a}}"
+       state: "{{item.b}}"
+     with_items:
+      - {a: elinks, b: absent}
+      - {a: git, b: absent}
+      - {a: maven, b: absent}
+      - {a: tree, b: present}
+      - {a: tomcat9, b: present}
+      - {a: tomcat9-admin, b: present}
+...

@@ -1,0 +1,10 @@
+---
+- name: playbook to install elinks, git, maven, tree, tomcat9, tomcat9-admin
+  hosts: all
+  become: true
+  tasks:
+   - name: install packages
+     apt: 
+       name: ["elinks", "git", "maven", "tree", "tomcat9", "tomcat9-admin"]
+       state: present
+...

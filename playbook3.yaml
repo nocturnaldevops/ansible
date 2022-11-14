@@ -1,0 +1,16 @@
+---
+- name: fetch a file from 172.31.83.34
+  hosts: 172.31.83.34
+  tasks:
+   - name: fetch a file dockerfile
+     fetch:
+       src: /home/ubuntu/dockerfile
+       dest: /tmp
+- name: copy file to 172.31.89.56
+  hosts: 172.31.89.56
+  tasks:
+   - name: copy  a file dockerfile to 172.31.89.56
+     copy:
+       src: /tmp/172.31.83.34/home/ubuntu/dockerfile
+       dest: /home/ubuntu/
+...

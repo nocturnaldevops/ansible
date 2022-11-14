@@ -1,0 +1,23 @@
+---
+- name: install and uninstall packages and create a user 
+  hosts: reachable
+  become: true
+  tasks:
+   - name: install and uninstall packages
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+      - {a: "{{a}}", b: "{{j}}", c: "{{c}}"}
+      - {a: "{{d}}", b: "{{j}}", c: "{{c}}"}
+      - {a: "{{f}}", b: "{{j}}", c: "{{c}}"}
+      - {a: "{{e}}", b: "{{b}}", c: "{{m}}"}
+      - {a: "{{h}}", b: "{{b}}", c: "{{m}}"}
+   - name: create a user
+     user: 
+      name: "{{g}}"
+      home: "{{i}}"
+      shell: "{{l}}"
+      comment: "{{k}}"
+...

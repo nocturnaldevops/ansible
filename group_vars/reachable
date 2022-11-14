@@ -1,0 +1,13 @@
+a: tomcat9
+b: absent
+c: yes
+d: tomcat9-admin
+e: elinks
+f: tree
+g: puru
+h: maven
+i: /home/puru
+j: present
+k: developer
+l: /bin/bash
+m: no
